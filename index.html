@@ -36,9 +36,7 @@
 <button onclick="playRandom()">Start</button>
 
 <audio id="player"></audio>
-
 <script>
-  // Add your MP3 files here
   const songs = [
     "song1.mp3",
     "song2.mp3",
@@ -46,10 +44,31 @@
     "song4.mp3"
   ];
 
+  const rareSongs = ["cont1.mp3", "cont2.mp3"];
+
+  let lastPlayed = null;
+
   function playRandom() {
-    const randomIndex = Math.floor(Math.random() * songs.length);
     const player = document.getElementById("player");
-    player.src = songs[randomIndex];
+
+    let chosenSong;
+
+    // 10% chance for rare songs
+    if (Math.random() < 0.1) {
+      do {
+        const randomIndex = Math.floor(Math.random() * rareSongs.length);
+        chosenSong = rareSongs[randomIndex];
+      } while (chosenSong === lastPlayed);
+    } else {
+      do {
+        const randomIndex = Math.floor(Math.random() * songs.length);
+        chosenSong = songs[randomIndex];
+      } while (chosenSong === lastPlayed);
+    }
+
+    lastPlayed = chosenSong;
+
+    player.src = chosenSong;
     player.play();
   }
 </script>
