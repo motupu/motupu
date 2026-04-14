@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Random MP3 Player</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: #111;
+      color: white;
+      font-family: Arial, sans-serif;
+    }
+
+    button {
+      padding: 20px 40px;
+      font-size: 20px;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      background: #4CAF50;
+      color: white;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #45a049;
+    }
+  </style>
+</head>
+<body>
+
+<button onclick="playRandom()">Start</button>
+
+<audio id="player"></audio>
+
+<script>
+  // Add your MP3 files here
+  const songs = [
+    "song1.mp3",
+    "song2.mp3",
+    "song3.mp3",
+    "song4.mp3"
+  ];
+
+  function playRandom() {
+    const randomIndex = Math.floor(Math.random() * songs.length);
+    const player = document.getElementById("player");
+    player.src = songs[randomIndex];
+    player.play();
+  }
+</script>
+
+</body>
+</html>
